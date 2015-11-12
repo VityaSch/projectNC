@@ -10,7 +10,7 @@ CREATE TABLE Movies(
   short_description VARCHAR2(50) NOT NULL,
   description VARCHAR2(100) NOT NULL,
   year_release DATE NOT NULL,
-  lenght DATE NOT NULL
+  length DATE NOT NULL
   );
 
 CREATE TABLE Movies_genres(
@@ -39,9 +39,9 @@ CREATE TABLE Events(
   );
 
 CREATE TABLE Movies_events(
-  evetn_id INT NOT NULL,
+  event_id INT NOT NULL,
   movie_id INT NOT NULL,
-  FOREIGN KEY (evetn_id) REFERENCES Events(event_id),
+  FOREIGN KEY (event_id) REFERENCES Events(event_id),
   FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
   );
 
@@ -100,3 +100,7 @@ CREATE TABLE Places_bookings(
   FOREIGN KEY (booking_id) REFERENCES Bookings(booking_id),
   FOREIGN KEY (place_id) REFERENCES Places(place_id)
   );
+
+ALTER TABLE Places_bookings ADD CONSTRAINT Place_booking_PK PRIMARY KEY (booking_id,place_id);
+ALTER TABLE Movies_events ADD CONSTRAINT Movie_event_PK PRIMARY KEY (event_id,movie_id);
+ALTER TABLE Movies_genres ADD CONSTRAINT Movie_genre_PK PRIMARY KEY (genre_id,movie_id);
