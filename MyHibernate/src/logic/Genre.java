@@ -24,7 +24,10 @@ public class Genre {
         genre_id = g.getGenreId();
     }   
 	
-	@Id @Column(name="GENRE_ID")
+	@Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+	@Column(name="GENRE_ID")
 	public int getGenreId(){
 		return genre_id;
 	}
