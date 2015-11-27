@@ -1,14 +1,15 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
-import logic.Movie;
+import tables.Movie;
 
 public interface MovieDAO {
-	public void addMovie(Movie movie); // добавить фильм
-	public void updateMovie(Movie movie); // обновить фильм
-	public Movie getMovieById(int id) throws SQLException; // получить фильм по id
-	public java.util.List<Movie> getAllMovie() throws SQLException; //получить все фильмы
-	public void deleteMovie(Movie movie); //удалить фильм
+	public void addMovie(Movie movie); // добавить 
+	public void updateMovie(Movie movie); // обновить 
+	public Movie getMovieById(int id) throws SQLException; // получить  по id
+	public List<Movie> getAllMovie() throws SQLException; //получить все 
+	public void deleteMovie(Movie movie); //удалить 
 	
 }

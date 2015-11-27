@@ -35,7 +35,7 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Виктор/Downloads/hibernate-release-5.0.4.Final/hibernate-release-5.0.4.Final/lib/required/jandex-2.0.0.CR1.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Виктор/Downloads/hibernate-release-5.0.4.Final/hibernate-release-5.0.4.Final/lib/required/javassist-3.18.1-GA.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Виктор/Downloads/hibernate-release-5.0.4.Final/hibernate-release-5.0.4.Final/lib/required/jboss-logging-3.3.0.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Виктор/Downloads/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Виктор/Downloads/simplefan (1).jar"/>
+	<classpathentry kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

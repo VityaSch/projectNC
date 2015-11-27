@@ -4,22 +4,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
 import javax.swing.JOptionPane;
+
 import org.hibernate.Session;
-import dao.GenreDAO;
-import tables.Genre;
+
+import dao.NewsDAO;
+import tables.Movie;
+import tables.News;
 import util.HibernateUtil;
 
-public class GenreDAOImpl implements GenreDAO{
+public class NewsDAOImpl implements NewsDAO{
 
 	@Override
-	public void addGenre(Genre genre){
+	public void addNews(News news) {
 		 Session session = null;
          try {
-        	 Locale.setDefault(Locale.ENGLISH);
+       	  Locale.setDefault(Locale.ENGLISH);
              session = HibernateUtil.getSessionFactory().openSession();
              session.beginTransaction();
-             session.save(genre);
+             session.save(news);
              session.getTransaction().commit();
          } catch (Exception e) {
              JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
@@ -27,53 +31,17 @@ public class GenreDAOImpl implements GenreDAO{
              if (session != null && session.isOpen()) {
                  session.close();
              }
-         }
+         }		
 	}
 
 	@Override
-	public List<Genre> getAllGenre() throws SQLException {
-		Session session = null;
-        List<Genre> genres = new ArrayList<Genre>();
-        try {
-        	Locale.setDefault(Locale.ENGLISH);
-            session = HibernateUtil.getSessionFactory().openSession();
-            genres = session.createCriteria(Genre.class).list();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return genres;
-	}
-
-	@Override
-	public void deleteGenre(Genre genre) {
-		 Session session = null;
-         try {
-        	 Locale.setDefault(Locale.ENGLISH);
-             session = HibernateUtil.getSessionFactory().openSession();
-             session.beginTransaction();
-             session.delete(genre);
-             session.getTransaction().commit();
-         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
-         } finally {
-             if (session != null && session.isOpen()) {
-                 session.close();
-             }
-         }
-	}
-
-	@Override
-	public void updateGenre(Genre genre) {
+	public void updateNews(News news) {
 		Session session = null;
         try {
         	Locale.setDefault(Locale.ENGLISH);
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.update(genre);
+            session.update(news);
             session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
@@ -85,13 +53,13 @@ public class GenreDAOImpl implements GenreDAO{
 	}
 
 	@Override
-	public Genre getGenreById(int id) throws SQLException {
+	public News getNewsById(int id) throws SQLException {
 		Session session = null;
-        Genre genre = null;
+        News news = null;
         try {
         	Locale.setDefault(Locale.ENGLISH);
             session = HibernateUtil.getSessionFactory().openSession();
-            genre = (Genre) session.get(Genre.class, id);
+            news = (News) session.get(News.class, id);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
         } finally {
@@ -99,7 +67,43 @@ public class GenreDAOImpl implements GenreDAO{
                 session.close();
             }
         }
-        return genre;
+        return news;
+	}
+
+	@Override
+	public List<News> getAllNews() throws SQLException {
+		Session session = null;
+        List<News> news = new ArrayList<News>();
+        try {
+        	Locale.setDefault(Locale.ENGLISH);
+            session = HibernateUtil.getSessionFactory().openSession();
+            news = session.createCriteria(News.class).list();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return news;
+	}
+
+	@Override
+	public void deleteNews(News news) {
+		 Session session = null;
+         try {
+        	 Locale.setDefault(Locale.ENGLISH);
+             session = HibernateUtil.getSessionFactory().openSession();
+             session.beginTransaction();
+             session.delete(news);
+             session.getTransaction().commit();
+         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+         } finally {
+             if (session != null && session.isOpen()) {
+                 session.close();
+             }
+         }
 	}
 
 }

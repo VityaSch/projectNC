@@ -6,39 +6,23 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JOptionPane;
+
 import org.hibernate.Session;
+
+import antlr.debug.Event;
+import dao.EventDAO;
 import util.HibernateUtil;
-import dao.MovieDAO;
-import tables.Movie;
 
-public class MovieDAOImpl implements MovieDAO {
+public class EventDAOImpl implements EventDAO{
 
 	@Override
-	public void addMovie(Movie movie) {
-		  Session session = null;
-          try {
-        	  Locale.setDefault(Locale.ENGLISH);
-              session = HibernateUtil.getSessionFactory().openSession();
-              session.beginTransaction();
-              session.save(movie);
-              session.getTransaction().commit();
-          } catch (Exception e) {
-              JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
-          } finally {
-              if (session != null && session.isOpen()) {
-                  session.close();
-              }
-          }		
-	}
-
-	@Override
-	public void updateMovie(Movie movie) {
+	public void addMovie(Event event) {
 		Session session = null;
         try {
-        	Locale.setDefault(Locale.ENGLISH);
+       	 Locale.setDefault(Locale.ENGLISH);
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.update(movie);
+            session.save(event);
             session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
@@ -50,13 +34,14 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public Movie getMovieById(int id) throws SQLException {
+	public void updateMovie(Event event) {
 		Session session = null;
-        Movie movie = null;
         try {
         	Locale.setDefault(Locale.ENGLISH);
             session = HibernateUtil.getSessionFactory().openSession();
-            movie = (Movie) session.get(Movie.class, id);
+            session.beginTransaction();
+            session.update(event);
+            session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
         } finally {
@@ -64,36 +49,52 @@ public class MovieDAOImpl implements MovieDAO {
                 session.close();
             }
         }
-        return movie;
-	} 
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Movie> getAllMovie() throws SQLException {
-		Session session = null;
-        List<Movie> movies = new ArrayList<Movie>();
-        try {
-        	Locale.setDefault(Locale.ENGLISH);
-            session = HibernateUtil.getSessionFactory().openSession();
-            movies = session.createCriteria(Movie.class).list();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return movies;
 	}
 
 	@Override
-	public void deleteMovie(Movie movie) {
+	public Event getMovieById(int id) throws SQLException {
+		Session session = null;
+        Event event = null;
+        try {
+        	Locale.setDefault(Locale.ENGLISH);
+            session = HibernateUtil.getSessionFactory().openSession();
+            event = (Event) session.get(Event.class, id);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return event;
+	}
+
+	@Override
+	public List<Event> getAllMovie() throws SQLException {
+		Session session = null;
+        List<Event> events = new ArrayList<Event>();
+        try {
+        	Locale.setDefault(Locale.ENGLISH);
+            session = HibernateUtil.getSessionFactory().openSession();
+            events = session.createCriteria(Event.class).list();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return events;
+	}
+
+	@Override
+	public void deleteMovie(Event event) {
 		 Session session = null;
          try {
         	 Locale.setDefault(Locale.ENGLISH);
              session = HibernateUtil.getSessionFactory().openSession();
              session.beginTransaction();
-             session.delete(movie);
+             session.delete(event);
              session.getTransaction().commit();
          } catch (Exception e) {
              JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
