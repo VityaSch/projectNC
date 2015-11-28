@@ -2,12 +2,8 @@ package main;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.crypto.Data;
-
 import dao.Factory;
 import models.Genre;
 import models.Movie;

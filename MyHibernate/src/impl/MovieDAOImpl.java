@@ -67,7 +67,6 @@ public class MovieDAOImpl implements MovieDAO {
         return movie;
 	} 
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getAllMovie() throws SQLException {
 		Session session = null;

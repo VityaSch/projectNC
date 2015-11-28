@@ -14,16 +14,16 @@
     <property name="hibernate.connection.autocommit">false</property>
     <property name="current_session_context_class">thread</property>
 
-    <mapping class="tables.Genre" />
-    <mapping class="tables.Movie" />
-    <mapping class="tables.Event" />
-    <mapping class="tables.News" />
-    <mapping class="tables.Booking" />
-    <mapping class="tables.Hall" />
-    <mapping class="tables.Place" />
-    <mapping class="tables.Sale" />
-    <mapping class="tables.Sesion" />
-    <mapping class="tables.Tickets" />
+    <mapping class="models.Genre" />
+    <mapping class="models.Movie" />
+    <mapping class="models.Event" />
+    <mapping class="models.News" />
+    <mapping class="models.Booking" />
+    <mapping class="models.Hall" />
+    <mapping class="models.Place" />
+    <mapping class="models.Sale" />
+    <mapping class="models.Sesion" />
+    <mapping class="models.Tickets" />
     
   </session-factory>
 </hibernate-configuration>

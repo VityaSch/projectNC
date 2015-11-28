@@ -2,8 +2,6 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import antlr.debug.Event;
 import models.Events;
 
 public interface EventDAO {
