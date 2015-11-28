@@ -17,7 +17,13 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="BOOKINGS")
 public class Booking {
-	public Booking(){
+	public Booking(){}
+	
+	public Booking(Sesion bs, List<Place> lp, String sn, String n){
+		this.bookingSession = bs;
+		this.places = lp;
+		this.surname = sn;
+		this.name = n;
 	}
 	
 	@Id

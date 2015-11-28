@@ -15,6 +15,15 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="HALLS")
 public class Hall {
+	public Hall(){}
+	
+	public Hall(int cp, int cr, List<Sesion> ls, List<Place> lp){
+		this.count_place = cp;
+		this.count_row = cr;
+		this.session = ls;
+		this.places = lp;
+	}
+	
 	@Id
 	@Column(name="HALL_ID")
 	@GeneratedValue(generator="increment")

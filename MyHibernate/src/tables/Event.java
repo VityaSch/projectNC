@@ -13,6 +13,16 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="EVENTS")
 public class Event {
+	public Event(){}
+	
+	public Event(String n, String des, Date dn, Date de, int dis){
+		this.name = n;
+		this.description = des;
+		this.dateNew = dn;
+		this.dateEnd = de;
+		this.discount = dis;
+	}
+	
 	@Id
 	@Column(name="EVENT_ID")
     @GeneratedValue(generator="increment")

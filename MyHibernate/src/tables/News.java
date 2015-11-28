@@ -16,25 +16,21 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="NEWS")
 public class News {
+	public News(){}
+	
+	public News(Movie m,String n, String de, Date d){
+		this.movieNews = m;
+		this.name = n;
+		this.description = de;
+		this.date = d;
+	}
 	
 	@Id
 	@Column(name="NEWS_ID")
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
 	private int news_id;
-	
-	public News(){
-		this.news_id = 0;
-		this.movieNews = null;
-		this.description = null;
-		this.date = null;
-	}
-	
-	public News(Movie m, String de, Date d){
-		this.movieNews = m;
-		this.description = de;
-		this.date = d;
-	}
+
 	@ManyToOne
 	@JoinColumn(name="MOVIE_ID")
 	private Movie movieNews;

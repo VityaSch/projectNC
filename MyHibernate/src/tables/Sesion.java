@@ -18,8 +18,16 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="SESSIONS")
 public class Sesion {
-	public Sesion(){
-	}
+	public Sesion(){}
+	
+	public Sesion(Movie m, Hall h, List<Tickets> lt, List<Booking> lb, Date d){
+		this.movieSession = m;
+		this.hallSession = h;
+		this.ticket = lt;
+		this.booking = lb;
+		this.date = d;
+	}	
+	
 	@Id
 	@Column(name="SESSION_ID")
     @GeneratedValue(generator="increment")

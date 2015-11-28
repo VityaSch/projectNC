@@ -20,6 +20,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="MOVIES")
 public class Movie {
+	public Movie(){}
+	
+	public Movie(String n, String des, String sdes, String der, Date d1, Date d2){
+		name = n;
+		description = des;
+		short_description = sdes;
+		derector = der;
+		year_release = d1;
+		lenght = d2;
+	}
+	
 	@Id
 	@Column(name="MOVIE_ID")
     @GeneratedValue(generator="increment")
@@ -63,19 +74,7 @@ public class Movie {
 			joinColumns = {@JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")},
 			inverseJoinColumns = {@JoinColumn(name = "EVENT_ID", referencedColumnName = "EVENT_ID")})
 	private List<Event> events;
-		
-	public Movie(){
-	}
-	
-	public Movie(String n, String des, String sdes, String der, Date d1, Date d2){
-		name = n;
-		description = des;
-		short_description = sdes;
-		derector = der;
-		year_release = d1;
-		lenght = d2;
-	}
-		
+					
 	public int getId(){
 		return movie_id;
 	}

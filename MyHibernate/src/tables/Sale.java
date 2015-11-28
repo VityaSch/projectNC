@@ -16,6 +16,14 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="SALES")
 public class Sale {
+	public Sale(){}
+	
+	public Sale(Tickets t, Date d, int p){
+		this.ticket = t;
+		this.date = d;
+		this.price = p;
+	}
+	
 	@Id
 	@Column(name="SALE_ID")
 	@GeneratedValue(generator="increment")

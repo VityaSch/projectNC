@@ -16,7 +16,13 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="TICKETS")
 public class Tickets {
-	public Tickets(){
+	public Tickets(){}
+	
+	public Tickets(Sesion s, Place p, Date d, int pr){
+		this.ticketSession = s;
+		this.place = p;
+		this.date = d;
+		this.price = pr;
 	}
 	
 	@Id

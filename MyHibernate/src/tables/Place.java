@@ -13,7 +13,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="PLACES")
 public class Place {
-	public Place(){
+	public Place(){}
+	
+	public Place(Hall h, int r, int np){
+		this.hallPlace = h;
+		this.row = r;
+		this.numberPlace = np;
 	}
 	
 	@Id

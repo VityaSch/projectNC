@@ -13,6 +13,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="GENRES")
 public class Genre {
+	public Genre(){}
+	
+	public Genre(String n){
+        this.name = n;
+    }
+	
 	@Id
 	@Column(name="GENRE_ID")
     @GeneratedValue(generator="increment")
@@ -21,16 +27,7 @@ public class Genre {
 	
 	@Column(name="NAME")
 	private String name;
-	
-	public Genre(){
-		name = null;
-	}
-	
-	public Genre(Genre g){
-        name = g.getName();
-        genre_id = g.getGenreId();
-    }
-	
+		
 	public int getGenreId(){
 		return genre_id;
 	}
