@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import antlr.debug.Event;
 import dao.SaleDAO;
-import tables.Sale;
+import models.Sale;
 import util.HibernateUtil;
 
 public class SaleDAOImpl implements SaleDAO{

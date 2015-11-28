@@ -3,7 +3,7 @@ package dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import tables.Tickets;
+import models.Tickets;
 
 public interface TicketsDAO {
 	public void addTickets(Tickets tickets); 

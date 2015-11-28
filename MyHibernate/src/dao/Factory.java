@@ -10,7 +10,7 @@ import impl.PlaceDAOImpl;
 import impl.SaleDAOImpl;
 import impl.SessionDAOImpl;
 import impl.TicketsDAOImpl;
-import tables.News;
+import models.News;
 
 public class Factory {
 	private static MovieDAO movieDAO = null;

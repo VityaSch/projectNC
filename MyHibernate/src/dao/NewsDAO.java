@@ -2,7 +2,8 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import tables.News;
+
+import models.News;
 
 public interface NewsDAO {
 	public void addNews(News news); 

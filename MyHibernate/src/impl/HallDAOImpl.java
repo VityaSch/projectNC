@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import antlr.debug.Event;
 import dao.HallDAO;
-import tables.Hall;
+import models.Hall;
 import util.HibernateUtil;
 
 public class HallDAOImpl implements HallDAO{

@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import antlr.debug.Event;
 import dao.TicketsDAO;
-import tables.Tickets;
+import models.Tickets;
 import util.HibernateUtil;
 
 public class TicketsDAOImpl implements TicketsDAO{

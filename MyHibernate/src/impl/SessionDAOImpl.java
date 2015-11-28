@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import antlr.debug.Event;
 import dao.SessionDAO;
-import tables.Sesion;
+import models.Sesion;
 import util.HibernateUtil;
 
 public class SessionDAOImpl implements SessionDAO {

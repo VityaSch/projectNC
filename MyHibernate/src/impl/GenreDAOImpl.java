@@ -7,7 +7,7 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import dao.GenreDAO;
-import tables.Genre;
+import models.Genre;
 import util.HibernateUtil;
 
 public class GenreDAOImpl implements GenreDAO{

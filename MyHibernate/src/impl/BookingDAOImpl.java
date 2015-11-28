@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import antlr.debug.Event;
 import dao.BookingDAO;
-import tables.Booking;
+import models.Booking;
 import util.HibernateUtil;
 
 public class BookingDAOImpl implements BookingDAO {

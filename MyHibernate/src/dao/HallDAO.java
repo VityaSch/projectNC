@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import antlr.debug.Event;
-import tables.Hall;
+import models.Hall;
 
 public interface HallDAO {
 	public void addHall(Hall hall); 

@@ -4,11 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import antlr.debug.Event;
+import models.Events;
 
 public interface EventDAO {
-	public void addMovie(Event event); 
-	public void updateMovie(Event event); 
-	public Event getMovieById(int id) throws SQLException; 
-	public List<Event> getAllMovie() throws SQLException; 
-	public void deleteMovie(Event event); 
+	public void addMovie(Events event); 
+	public void updateMovie(Events event); 
+	public Events getMovieById(int id) throws SQLException; 
+	public List<Events> getAllMovie() throws SQLException; 
+	public void deleteMovie(Events event); 
 }

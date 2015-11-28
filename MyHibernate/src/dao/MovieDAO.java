@@ -3,7 +3,7 @@ package dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import tables.Movie;
+import models.Movie;
 
 public interface MovieDAO {
 	public void addMovie(Movie movie); // добавить 

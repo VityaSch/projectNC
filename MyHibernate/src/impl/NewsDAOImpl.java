@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
 import dao.NewsDAO;
-import tables.Movie;
-import tables.News;
+import models.Movie;
+import models.News;
 import util.HibernateUtil;
 
 public class NewsDAOImpl implements NewsDAO{

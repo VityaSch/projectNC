@@ -2,7 +2,8 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import tables.Place;
+
+import models.Place;
 
 public interface PlaceDAO {
 	public void addPlace(Place place); 

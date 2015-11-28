@@ -9,9 +9,9 @@ import java.util.List;
 import javax.xml.crypto.Data;
 
 import dao.Factory;
-import tables.Genre;
-import tables.Movie;
-import tables.News;
+import models.Genre;
+import models.Movie;
+import models.News;
 
 public class Main {
 	public static void main(String[] args) throws SQLException{	

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import util.HibernateUtil;
 import dao.MovieDAO;
-import tables.Movie;
+import models.Movie;
 
 public class MovieDAOImpl implements MovieDAO {
 

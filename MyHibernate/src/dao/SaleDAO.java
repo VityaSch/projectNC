@@ -3,7 +3,7 @@ package dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import tables.Sale;
+import models.Sale;
 
 public interface SaleDAO {
 	public void addSale(Sale sale); 

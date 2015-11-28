@@ -2,7 +2,8 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import tables.Sesion;
+
+import models.Sesion;
 
 public interface SessionDAO {
 	public void addSession(Sesion session); 

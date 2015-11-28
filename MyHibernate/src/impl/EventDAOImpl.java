@@ -4,19 +4,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import javax.swing.JOptionPane;
-
 import org.hibernate.Session;
-
 import antlr.debug.Event;
 import dao.EventDAO;
+import models.Events;
 import util.HibernateUtil;
 
 public class EventDAOImpl implements EventDAO{
 
 	@Override
-	public void addMovie(Event event) {
+	public void addMovie(Events event) {
 		Session session = null;
         try {
        	 Locale.setDefault(Locale.ENGLISH);
@@ -34,7 +32,7 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public void updateMovie(Event event) {
+	public void updateMovie(Events event) {
 		Session session = null;
         try {
         	Locale.setDefault(Locale.ENGLISH);
@@ -52,13 +50,13 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public Event getMovieById(int id) throws SQLException {
+	public Events getMovieById(int id) throws SQLException {
 		Session session = null;
-        Event event = null;
+		Events event = null;
         try {
         	Locale.setDefault(Locale.ENGLISH);
             session = HibernateUtil.getSessionFactory().openSession();
-            event = (Event) session.get(Event.class, id);
+            event = (Events) session.get(Events.class, id);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
         } finally {
@@ -70,9 +68,9 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public List<Event> getAllMovie() throws SQLException {
+	public List<Events> getAllMovie() throws SQLException {
 		Session session = null;
-        List<Event> events = new ArrayList<Event>();
+        List<Events> events = new ArrayList<Events>();
         try {
         	Locale.setDefault(Locale.ENGLISH);
             session = HibernateUtil.getSessionFactory().openSession();
@@ -88,7 +86,7 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public void deleteMovie(Event event) {
+	public void deleteMovie(Events event) {
 		 Session session = null;
          try {
         	 Locale.setDefault(Locale.ENGLISH);

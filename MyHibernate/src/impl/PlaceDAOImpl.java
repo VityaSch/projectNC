@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import antlr.debug.Event;
 import dao.PlaceDAO;
-import tables.Place;
+import models.Place;
 import util.HibernateUtil;
 
 public class PlaceDAOImpl implements PlaceDAO{
