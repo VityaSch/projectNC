@@ -11,6 +11,8 @@ import dao.Factory;
 import models.Genre;
 import models.Movie;
 import models.News;
+import view.StartView;
+import view.UserView;
 
 public class Main {
 	public static void main(String[] args) throws SQLException{	
@@ -48,13 +50,13 @@ public class Main {
 		n.setMovie_id(Factory.getInstance().getMovieDAO().getMovieById(1));*/
 		//showAll();
 
-		Date dNow = Factory.getInstance().getMovieDAO().getMovieById(1).getLenght();
+		/*Date dNow = Factory.getInstance().getMovieDAO().getMovieById(1).getLenght();
 		SimpleDateFormat ft =
 				new SimpleDateFormat ("yyyy.MM.dd hh:mm:ss");
 
-		System.out.println("Current Date: " + ft.format(dNow));
+		System.out.println("Current Date: " + ft.format(dNow));*/
 
-
+		new StartView().showStartMenu();
 		//new AdminController().updateMovie(Factory.getInstance().getMovieDAO().getMovieById(1));
 		//Factory.getInstance().getMovieDAO().addMovie(createMovie("test","test","test",new DATE(),new DATE(),"test"));
 	}
