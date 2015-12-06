@@ -65,13 +65,6 @@ public class Movie {
 			joinColumns = {@JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")},
 			inverseJoinColumns = {@JoinColumn(name = "GENRE_ID", referencedColumnName = "GENRE_ID")})
 	private List<Genre> genres;
-	
-	@ManyToMany
-	@JoinTable(
-			name="MOVIES_EVENTS",
-			joinColumns = {@JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")},
-			inverseJoinColumns = {@JoinColumn(name = "EVENT_ID", referencedColumnName = "EVENT_ID")})
-	private List<Events> events;
 					
 	public int getId(){
 		return movieId;
@@ -104,10 +97,7 @@ public class Movie {
 	public List<Genre> getGenres() {
 		return genres;
 	}
-	
-	public List<Events> getEvents(){
-		return events;
-	}
+
 	
 	public List<News> getNews(){
 		return this.news;
@@ -128,10 +118,7 @@ public class Movie {
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres; 
 	}
-	
-	public void setEvents(List<Events> events){
-		this.events = events;
-	}
+
 	
 	public void setId(int id){
 		this.movieId = id;

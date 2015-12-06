@@ -31,7 +31,7 @@ public class Place {
 	@JoinColumn(name="HALL_ID")
 	private Hall hallPlace;
 	
-	@Column(name="row")
+	@Column(name="NUMBER_ROW")
 	private int row;
 	
 	@Column(name="NUMBER_PLACE")

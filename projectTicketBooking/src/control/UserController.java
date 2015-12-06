@@ -37,7 +37,7 @@ public class UserController {
         listAllTicketInSession.remove(ticket);
         thisSesion.setTicket(listAllTicketInSession);
         Factory.getInstance().getSessionDAO().updateSession(thisSesion);
-        Sale sale = new Sale(ticket,new Date(1),ticket.getPrice());//error date
+        Sale sale = new Sale(ticket,new Date(1),ticket.getPrice());
         Factory.getInstance().getSaleDAO().addSale(sale);
     }
 }

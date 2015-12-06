@@ -5,9 +5,9 @@ import java.util.List;
 import models.Events;
 
 public interface EventDAO {
-	public void addMovie(Events event); 
-	public void updateMovie(Events event); 
-	public Events getMovieById(int id) throws SQLException; 
-	public List<Events> getAllMovie() throws SQLException; 
-	public void deleteMovie(Events event); 
+	public void addEvent(Events event);
+	public void updateEvent(Events event);
+	public Events getEventById(int id) throws SQLException;
+	public List<Events> getAllEvent() throws SQLException;
+	public void deleteEvent(Events event);
 }

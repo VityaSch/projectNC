@@ -1,12 +1,9 @@
 package models;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -43,6 +40,17 @@ public class Events {
 	
 	@Column(name="DISCOUNT")
 	private int discount;
+
+	@ManyToMany
+	@JoinTable(
+			name="MOVIES_EVENTS",
+			joinColumns = {@JoinColumn(name = "EVENT_ID", referencedColumnName = "EVENT_ID")},
+			inverseJoinColumns = {@JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")})
+	private List<Movie> movies;
+
+	public List<Movie> getMovies(){
+		return movies;
+	}
 	
 	public int getEventId(){
 		return this.eventId;
@@ -90,5 +98,9 @@ public class Events {
 	
 	public void setDiscount(int d){
 		this.discount = d;
+	}
+
+	public void setMovies(List<Movie> movies){
+		this.movies = movies;
 	}
 }

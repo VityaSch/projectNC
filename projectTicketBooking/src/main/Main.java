@@ -8,58 +8,74 @@ import java.util.List;
 
 import control.AdminController;
 import dao.Factory;
-import models.Genre;
-import models.Movie;
-import models.News;
+import models.*;
+import oracle.sql.TIMESTAMP;
+import org.hibernate.Session;
 import view.StartView;
 import view.UserView;
 
 public class Main {
-	public static void main(String[] args) throws SQLException{	
+	public static void main(String[] args) throws SQLException{
 
-		/*Genre g = new Genre();
-		Genre g2 = new Genre();
-		g.setName("GENRE1");
-		g2.setName("GENRE1");
-		add(g);
-		add(g2);*/
-		
+		//Genre g2 = new Genre();
+		//g2.setName("GE22222wq");
+		///add(g2);
 		//showAll();
 		/*Date d = new Date(1000);
 		Movie m = new Movie();
 		m.setName("Movies1");
-		m.setDerector("Derect1");
+		m.setDirector("Derect1");
 		m.setDescription("Description1");
 		m.setShortDescription("ShortDescription");
 		m.setLenght(d);
 		m.setYearRelease(d);
 		m.setGenres(Factory.getInstance().getGenreDAO().getAllGenre());
-		
+		Factory.getInstance().getMovieDAO().addMovie(m);*/
+		/*Date date = new Date((2015-1900),1,5,12,30,00);
 
-		
-		News n = new News();
-		n.setMovie_id(m);
-		n.setName("name1");
-		n.setDescription("description1");
-		n.setDate(d);
-		
-		List<News> newList = new ArrayList<News>();
-		newList.add(n);
-		m.setNews(newList);
-		Factory.getInstance().getMovieDAO().addMovie(m);
-		n.setMovie_id(Factory.getInstance().getMovieDAO().getMovieById(1));*/
+		Sesion session = new Sesion();
+		session.setMovieId(Factory.getInstance().getMovieDAO().getMovieById(1));
+		session.setHallId(Factory.getInstance().getHallDAO().getHallById(1));
+		session.setDate(date);
+		Factory.getInstance().getSessionDAO().addSession(session);*/
+
+		//n.setMovie_id(Factory.getInstance().getMovieDAO().getMovieById(1));
 		//showAll();
+		//SimpleDateFormat ft = new SimpleDateFormat ("dd.mm.yyyy");
+		//System.out.println(ft.format(Factory.getInstance().getSessionDAO().getSessionById(5).getDate()));
 
-		/*Date dNow = Factory.getInstance().getMovieDAO().getMovieById(1).getLenght();
+		/*Date dNow = Factory.getInstance().getSessionDAO().getSessionById(5).getDate();
 		SimpleDateFormat ft =
 				new SimpleDateFormat ("yyyy.MM.dd hh:mm:ss");
+		*/
+		/*SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd");
+		Date d = Factory.getInstance().getSessionDAO().getSessionById(1).getDate();
+		System.out.println("2015.02.05".equals(ft.format(d)));
+*/
+		/*Sesion s = new Sesion();
+		s.setDate(new java.sql.Date(1));
+		s.setHallId(Factory.getInstance().getHallDAO().getHallById(1));
+		s.setMovieId(Factory.getInstance().getMovieDAO().getMovieById(2));
+		Factory.getInstance().getSessionDAO().addSession(s);*/
 
-		System.out.println("Current Date: " + ft.format(dNow));*/
+
+		//Tickets t = new Tickets(new Sesion(),new Place(),new java.sql.Date(1),100);
+		//Factory.getInstance().getTicketsDAO().addTickets(t);
+
+	/*	Sesion session = new Sesion();
+		session.setMovieId(Factory.getInstance().getMovieDAO().getMovieById(1));
+		session.setHallId(Factory.getInstance().getHallDAO().getHallById(1));
+		session.setDate(new Date());
+
+		Factory.getInstance().getSessionDAO().addSession(session);
+		System.out.println(session.getSessionId());
+*/
 
 		new StartView().showStartMenu();
 		//new AdminController().updateMovie(Factory.getInstance().getMovieDAO().getMovieById(1));
 		//Factory.getInstance().getMovieDAO().addMovie(createMovie("test","test","test",new DATE(),new DATE(),"test"));
 	}
+
 	/*private static Movie createMovie(String name, String director, String description, DATE time, DATE date, String shortDescription){
 		Movie movie = new Movie();
 		movie.setName(name);
@@ -84,17 +100,17 @@ public class Main {
 		Factory.getInstance().getGenreDAO().deleteGenre(Factory.getInstance().getGenreDAO().getGenreById(id));
 	}
 	private static void showAll() throws SQLException{
-		List<Genre> genres = Factory.getInstance().getGenreDAO().getAllGenre();
-        System.out.println("========��� ��������=========");
+		List<Tickets> genres = Factory.getInstance().getTicketsDAO().getAllTickets();
+
         for(int i = 0; i < genres.size(); i++) {
-                System.out.println("name : " + genres.get(i).getName() +",  id : " + genres.get(i).getGenreId());
-                System.out.println("=============================");              
-        } 
+                System.out.println("name : " + genres.get(i).getPrice() +",  id : " + genres.get(i).getTicketId());
+                System.out.println("=============================");
+        }
 	}
 	private static void show(int id) throws SQLException{
-		Genre g = Factory.getInstance().getGenreDAO().getGenreById(id);
+		Sesion g = Factory.getInstance().getSessionDAO().getSessionById(id);
 		System.out.println("========��� ��������=========");
-		System.out.println("name : " + g.getName() +",  id : " + g.getGenreId());
-        System.out.println("=============================");        
+		System.out.println("name : " + g.getMovieId().getName() +",  id : " + g.getSessionId());
+        System.out.println("=============================");
 	}
 }

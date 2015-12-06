@@ -72,7 +72,7 @@ public class TicketsDAOImpl implements TicketsDAO{
 	}
 
 	@Override
-	public List<Tickets> getAllMovie() throws SQLException {
+	public List<Tickets> getAllTickets() throws SQLException {
 		Session session = null;
         List<Tickets> tickets = new ArrayList<Tickets>();
         try {

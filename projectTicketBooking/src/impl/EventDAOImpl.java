@@ -15,7 +15,7 @@ import util.HibernateUtil;
 public class EventDAOImpl implements EventDAO{
 
 	@Override
-	public void addMovie(Events event) {
+	public void addEvent(Events event) {
 		Session session = null;
         try {
        	 Locale.setDefault(Locale.ENGLISH);
@@ -33,7 +33,7 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public void updateMovie(Events event) {
+	public void updateEvent(Events event) {
 		Session session = null;
         try {
         	Locale.setDefault(Locale.ENGLISH);
@@ -51,7 +51,7 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public Events getMovieById(int id) throws SQLException {
+	public Events getEventById(int id) throws SQLException {
 		Session session = null;
 		Events event = null;
         try {
@@ -69,7 +69,7 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public List<Events> getAllMovie() throws SQLException {
+	public List<Events> getAllEvent() throws SQLException {
 		Session session = null;
         List<Events> events = new ArrayList<Events>();
         try {
@@ -87,7 +87,7 @@ public class EventDAOImpl implements EventDAO{
 	}
 
 	@Override
-	public void deleteMovie(Events event) {
+	public void deleteEvent(Events event) {
 		 Session session = null;
          try {
         	 Locale.setDefault(Locale.ENGLISH);

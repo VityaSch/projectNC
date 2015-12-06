@@ -8,6 +8,7 @@ import models.Tickets;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -47,10 +48,10 @@ public class UserView {
     private void showAllSession(){
         try {
             SimpleDateFormat ft = new SimpleDateFormat ("MM.dd.yyyy hh:mm");
-            listAllSesion = Factory.getInstance().getSessionDAO().getAllSession();
+            List<Sesion> listAllSesion = Factory.getInstance().getSessionDAO().getAllSession();
             System.out.println("Сеанс\t\tФильм\t\tЗал\t\tДата");
             for(int i = 0; i < listAllSesion.size(); i++) {
-                System.out.println(listAllSesion.get(i).getSessionId() + "\t\t" + listAllSesion.get(i).getMovieId().getName() +
+                System.out.println(listAllSesion.get(i).getSessionId() + "\t\t\t" + listAllSesion.get(i).getMovieId().getName() +
                         "\t\t" + listAllSesion.get(i).getHallId().getHallId() + "\t\t" + ft.format(listAllSesion.get(i).getDate()));
             }
             showStartUser();
@@ -60,17 +61,18 @@ public class UserView {
     }
 
     private void showSessionOnDay(){
-        System.out.println("Введите дату dd.mm.yyyy");
-        SimpleDateFormat ft = new SimpleDateFormat ("dd.mm.yyyy");
+        System.out.println("Введите дату месяц и день");
+        SimpleDateFormat ft = new SimpleDateFormat ("MM.dd");
         Scanner scn = new Scanner(System.in);
         String date = scn.next();
         try {
             listAllSesion = Factory.getInstance().getSessionDAO().getAllSession();
             System.out.println("Сеанс\t\tФильм\t\tЗал\t\tДата");
             for(int i = 0; i < listAllSesion.size(); i++) {
-                if(date.equals(ft.format(listAllSesion.get(i).getDate()).toString()))
+                if(date.equals(ft.format(listAllSesion.get(i).getDate()))) {
                     System.out.println(listAllSesion.get(i).getSessionId() + "\t\t" +listAllSesion.get(i).getMovieId().getName() +
                             "\t\t" + listAllSesion.get(i).getHallId().getHallId() + "\t\t" + ft.format(listAllSesion.get(i).getDate()));
+                }
             }
             showStartUser();
         } catch (SQLException e) {
@@ -107,13 +109,5 @@ public class UserView {
             e.printStackTrace();
         }
 
-    }
-
-    public void showAllMovie() throws SQLException {
-        List<Movie> genres = Factory.getInstance().getMovieDAO().getAllMovie();
-        System.out.println("========Фильмы=========");
-        for(int i = 0; i < genres.size(); i++) {
-            System.out.println("id : " + genres.get(i).getId() + ", name : " + genres.get(i).getName());
-        }
     }
 }
