@@ -5,11 +5,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <bean id="startView" class="view.StartView" scope="prototype"/>
-    <bean id="adminView" class="view.AdminView" scope="prototype"/>
-    <bean id="userView" class="view.UserView" scope="prototype"/>
-    <bean id="adminController" class="control.AdminController" scope="prototype"/>
-    <bean id="userController" class="control.UserController" scope="prototype"/>
     <bean id="enter" class="control.EnterController" scope="prototype"/>
+    <bean id="userView" class="view.UserViewImpl" scope="prototype"/>
+    <bean id="userController" class="control.UserController" scope="prototype"/>
+
+    <bean id="adminController" class="control.AdminController" scope="prototype">
+        <property name="enter" ref="enter"/>
+    </bean>
+
+    <bean id="adminView" class="view.AdminViewImpl" scope="prototype">
+        <property name="enter" ref="enter"/>
+        <property name="adminController" ref="adminController"/>
+    </bean>
+
+    <bean id="startView" class="view.StartView" scope="prototype">
+        <property name="viewAdmin" ref="adminView"/>
+        <property name="viewUser" ref="userView"/>
+    </bean>
 
 </beans>

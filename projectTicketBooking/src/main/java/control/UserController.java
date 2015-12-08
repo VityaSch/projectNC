@@ -12,6 +12,9 @@ import java.util.List;
  * Created by Виктор on 05.12.2015.
  */
 public class UserController {
+    public UserController(){
+    }
+
     public void definePlace(Sesion sesion){
         List<Tickets> listRezultTicketThisSession = new ArrayList<Tickets>();
         List<Tickets> listAllTiketsThisSession = sesion.getTicket();

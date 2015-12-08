@@ -1,20 +1,13 @@
 package main;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import control.AdminController;
 import dao.Factory;
 import models.*;
-import oracle.sql.TIMESTAMP;
-import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import view.StartView;
-import view.UserView;
 
 public class Main {
 	public static void main(String[] args) throws SQLException{
@@ -72,6 +65,7 @@ public class Main {
 		Factory.getInstance().getSessionDAO().addSession(session);
 		System.out.println(session.getSessionId());
 */
+
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		StartView start = (StartView) context.getBean("startView");
 		start.showStartMenu();
