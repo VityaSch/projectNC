@@ -32,7 +32,7 @@ public class AdminViewImpl implements ViewAdmin {
         this.enter = enter;
     }
 
-    public void showStartAdmin() throws SQLException {
+    public void showStartAdmin() {
         System.out.println("Вы вошли как админ! ");
         System.out.println("С чем вы будите работать");
         System.out.println("1 - Фильмы\n2 - Жанры \n3 - Новости\n4 - События\n5 - Сеансы\n6 - Выйти");
@@ -61,25 +61,23 @@ public class AdminViewImpl implements ViewAdmin {
             }
     }
 
-    private void showMenu(String name, Class cl) throws SQLException {
+    private void showMenu(String name, Class cl)  {
         System.out.println("Вы находитесь в разделе " + name);
-        System.out.println("1 - Добавить " + name + "\n2 - Редактировать " + name + "\n3 - Удалить " + name + "\n4 - Вернуться");
+        System.out.println("1 - Добавить " + name + "\n2 - Редактировать " + name + "\n3 - Вернуться");
 
             switch (enter.getInt()){
                 case 1: selectAddUpdate(cl,true);
                     break;
                 case 2: selectAddUpdate(cl,false);
                     break;
-                case 3: showMenuDelete(cl);
-                    break;
-                case 4:showStartAdmin();
+                case 3: showStartAdmin();
                     break;
                 default: showMenu(name,cl);
                     break;
             }
     }
 
-    private void  selectAddUpdate(Class cl, boolean add) throws SQLException {
+    private void  selectAddUpdate(Class cl, boolean add){
         if(cl.equals(Movie.class)){
             if(add)showMenuUpdateAddMovie(true);
             else showMenuUpdateAddMovie(false);
@@ -104,7 +102,7 @@ public class AdminViewImpl implements ViewAdmin {
     }
 
 
-    private void showMenuUpdateAddMovie(boolean add) throws SQLException {
+    private void showMenuUpdateAddMovie(boolean add){
         Movie movie = null;
         if(!(add)) {
             System.out.println("Редактирование");
@@ -148,7 +146,7 @@ public class AdminViewImpl implements ViewAdmin {
         adminController.addMovie(movie,name,director,description,date,date,shortDescription,add);
         showStartAdmin();
     }
-    private void showMunuUpdateAddGenre(boolean add) throws SQLException {
+    private void showMunuUpdateAddGenre(boolean add){
         Genre genre;
         if(!(add)) {
             System.out.println("Редактирование");
@@ -162,7 +160,7 @@ public class AdminViewImpl implements ViewAdmin {
         adminController.addGenre(genre,add,name);
         showStartAdmin();
     }
-    private void showMenuUpdateAddNews(boolean add) throws SQLException {
+    private void showMenuUpdateAddNews(boolean add){
         News news;
         if(!(add)){
             System.out.println("Редактирование");
@@ -179,7 +177,7 @@ public class AdminViewImpl implements ViewAdmin {
         adminController.addNews(news,add,selectMovie(),name,desc,new Date());
         showStartAdmin();
     }
-    private void showMenuUpdateAddEvent(boolean add) throws SQLException {
+    private void showMenuUpdateAddEvent(boolean add){
         Events event;
         if(!(add)){
             System.out.println("Редактирование");
@@ -224,7 +222,7 @@ public class AdminViewImpl implements ViewAdmin {
         adminController.addEvent(event,add,name,dateNew,dateEnd,desc,discount);
         showStartAdmin();
     }
-    private void showMenuUpdateAddSession(boolean add) throws SQLException {
+    private void showMenuUpdateAddSession(boolean add){
         Sesion session;
         if(!(add)){
             System.out.println("Редактирование");
@@ -253,84 +251,95 @@ public class AdminViewImpl implements ViewAdmin {
         System.out.println("Введите цену");
         int price =  enter.getInt();
 
-        adminController.addSession(session,add,selectMovie(),selectHall(),new Date(yyyy,mm,dd,hh,mi,00),price);
+        try {
+            adminController.addSession(session,add,selectMovie(),selectHall(),new Date(yyyy,mm,dd,hh,mi,00),price);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         showStartAdmin();
     }
 
-    private void showMenuDelete(Class cl) throws SQLException {
-        if(cl.equals(Movie.class)) adminController.delete((Movie) selectMovie());
-        if(cl.equals(Genre.class)) adminController.delete((Genre) selectGenre());
-        if(cl.equals(News.class)) adminController.delete((News) selectNews());
-        if(cl.equals(Events.class)) adminController.delete((Events) selectEvents());
-        if(cl.equals(Sesion.class)) adminController.delete((Sesion) selectSesions());
-
-        showStartAdmin();
-    }
-
-    private Movie selectMovie() throws SQLException {
-        enter.showAllMovie();
-        System.out.println("Выбери фильм");
-        int movieId = enter.getInt();
-        if(movieId > 0 && movieId <= Factory.getInstance().getMovieDAO().getAllMovie().size()){
-            return Factory.getInstance().getMovieDAO().getMovieById(movieId);
-        }else selectMovie();
-
+    private Movie selectMovie(){
+        try {
+            enter.showAllMovie();
+            System.out.println("Выбери фильм");
+            int movieId = enter.getInt();
+            if(movieId > 0 && movieId <= Factory.getInstance().getMovieDAO().getAllMovie().size()){
+                return Factory.getInstance().getMovieDAO().getMovieById(movieId);
+            }else selectMovie();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
-    private Genre selectGenre() throws SQLException {
+    private Genre selectGenre(){
         enter.showAllGenres();
         System.out.println("Выбери жанр");
         int genreId = enter.getInt();
-        if(genreId > 0 && genreId <= Factory.getInstance().getGenreDAO().getAllGenre().size()){
-            return Factory.getInstance().getGenreDAO().getGenreById(genreId);
-        }else selectGenre();
-
-        return null;
-    }
-    private News selectNews() throws SQLException {
-        enter.showAllNews();
-
-        System.out.println("Выбери новость");
-        int newsId = enter.getInt();
-        if(newsId > 0 && newsId <= Factory.getInstance().getMovieDAO().getAllMovie().size()){
-            return Factory.getInstance().getNewsDAO().getNewsById(newsId);
-        }else selectNews();
-
-        return null;
-    }
-    private Events selectEvents() throws SQLException {
-        enter.showAllEvents();
-
-        System.out.println("Выбери событие");
-        int eventId = enter.getInt();
-        if(eventId > 0 && eventId <= Factory.getInstance().getEventDAO().getAllEvent().size()){
-            return Factory.getInstance().getEventDAO().getEventById(eventId);
-        }else selectEvents();
-
-        return null;
-    }
-    private Sesion selectSesions() throws SQLException {
-        enter.showAllSessions();
-
-        System.out.println("Выбери сеанс");
-        int sessionId = enter.getInt();
-        if(sessionId > 0 && sessionId <= Factory.getInstance().getSessionDAO().getAllSession().size()){
-            return Factory.getInstance().getSessionDAO().getSessionById(sessionId);
-        }else selectSesions();
-
-        return null;
-    }
-    private Hall selectHall() throws SQLException {
-        List<Hall> halls = Factory.getInstance().getHallDAO().getAllHall();
-
-        for(int i = 0; i < halls.size(); i++) {
-            System.out.println("id : " + halls.get(i).getHallId() );
+        try {
+            if(genreId > 0 && genreId <= Factory.getInstance().getGenreDAO().getAllGenre().size()){
+                return Factory.getInstance().getGenreDAO().getGenreById(genreId);
+            }else selectGenre();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        System.out.println("Выбери зал");
 
-        int hallId = enter.getInt();
-        if(hallId > 0 && hallId <= Factory.getInstance().getMovieDAO().getAllMovie().size()){
-            return Factory.getInstance().getHallDAO().getHallById(hallId);
+        return null;
+    }
+    private News selectNews(){
+        try {
+            enter.showAllNews();
+            System.out.println("Выбери новость");
+            int newsId = enter.getInt();
+            if(newsId > 0 && newsId <= Factory.getInstance().getMovieDAO().getAllMovie().size()){
+                return Factory.getInstance().getNewsDAO().getNewsById(newsId);
+            }else selectNews();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private Events selectEvents(){
+        try {
+            enter.showAllEvents();
+            System.out.println("Выбери событие");
+            int eventId = enter.getInt();
+            if(eventId > 0 && eventId <= Factory.getInstance().getEventDAO().getAllEvent().size()){
+                return Factory.getInstance().getEventDAO().getEventById(eventId);
+            }else selectEvents();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    private Sesion selectSesions(){
+        try {
+            enter.showAllSessions();
+            System.out.println("Выбери сеанс");
+             int sessionId = enter.getInt();
+            if(sessionId > 0 && sessionId <= Factory.getInstance().getSessionDAO().getAllSession().size()){
+                return Factory.getInstance().getSessionDAO().getSessionById(sessionId);
+            }else selectSesions();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private Hall selectHall(){
+        try {
+            List<Hall> halls = Factory.getInstance().getHallDAO().getAllHall();
+            for(int i = 0; i < halls.size(); i++) {
+                System.out.println("id : " + halls.get(i).getHallId() );
+            }
+            System.out.println("Выбери зал");
+
+            int hallId = enter.getInt();
+            if(hallId > 0 && hallId <= Factory.getInstance().getMovieDAO().getAllMovie().size()){
+                return Factory.getInstance().getHallDAO().getHallById(hallId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }

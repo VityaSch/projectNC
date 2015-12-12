@@ -1,14 +1,8 @@
 package models;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -33,7 +27,7 @@ public class Sale {
 	@JoinColumn(name="TICKET_ID")
 	private Tickets ticket;
 	
-	@Column(name="date")
+	@Column(name="DATES")
 	private Date date;
 	
 	@Column(name="PRICE")

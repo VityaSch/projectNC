@@ -26,7 +26,7 @@ public class AdminController {
         this.enter = enter;
     }
 
-    public void addMovie(Movie movies, String name, String director, String description, Date time, Date date, String shortDescription, boolean add) throws SQLException {
+    public void addMovie(Movie movies, String name, String director, String description, Date time, Date date, String shortDescription, boolean add){
         Movie movie = movies;
         movie.setName(name);
         movie.setDirector(director);
@@ -38,13 +38,18 @@ public class AdminController {
         if(add) Factory.getInstance().getMovieDAO().addMovie(movie);
         else Factory.getInstance().getMovieDAO().updateMovie(movie);
     }
-    private List<Genre> allGenre() throws SQLException {
+    private List<Genre> allGenre(){
         List<Genre> rezultGenres = new ArrayList<Genre>();
         enter.showAllGenres();
         while(true){
             int e = enter.getInt();
             if(e <= 0) break;
-            if(e <= Factory.getInstance().getGenreDAO().getAllGenre().size()) rezultGenres.add(Factory.getInstance().getGenreDAO().getGenreById(e));
+            try {
+                if(e > 0 && e <= Factory.getInstance().getGenreDAO().getAllGenre().size()) rezultGenres.add(Factory.getInstance().getGenreDAO().getGenreById(e));
+                else allGenre();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         }
         return rezultGenres;
     }
@@ -70,7 +75,7 @@ public class AdminController {
         else Factory.getInstance().getNewsDAO().updateNews(news);
     }
 
-    public void addEvent(Events ev, boolean add, String name, Date dateNew, Date dateEnd, String desc, int discount) throws SQLException {
+    public void addEvent(Events ev, boolean add, String name, Date dateNew, Date dateEnd, String desc, int discount){
         Events event = ev;
         event.setName(name);
         event.setDateNew(dateNew);
@@ -81,15 +86,19 @@ public class AdminController {
         if(add) Factory.getInstance().getEventDAO().addEvent(event);
         else Factory.getInstance().getEventDAO().updateEvent(event);
     }
-    private List<Movie> allMovie() throws SQLException {
+    private List<Movie> allMovie(){
         System.out.println("Выбери фильмы");
         List<Movie> rezultMovies = new ArrayList<Movie>();
 
         while(true){
-            enter.showAllMovie();
-            int e = enter.getInt();
-            if(e <= 0) break;
-            if(e <= Factory.getInstance().getMovieDAO().getAllMovie().size()) rezultMovies.add(Factory.getInstance().getMovieDAO().getMovieById(e));
+            try {
+                enter.showAllMovie();
+                int e = enter.getInt();
+                if(e <= 0) break;
+                if(e <= Factory.getInstance().getMovieDAO().getAllMovie().size()) rezultMovies.add(Factory.getInstance().getMovieDAO().getMovieById(e));
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         }
         return rezultMovies;
     }
@@ -105,29 +114,20 @@ public class AdminController {
         else Factory.getInstance().getSessionDAO().updateSession(session);
     }
     private List<Tickets> createTicketsInSession(Sesion thisSession, int price) throws SQLException {
-        List<Place> placeInHalls = Factory.getInstance().getPlaceDAO().getAllPlace();
         List<Tickets> rezultTickets = new ArrayList<Tickets>();
 
-       for(int i=0; i<placeInHalls.size();i++){
-           if(thisSession.getHallId().equals(placeInHalls.get(i).getHall())){
+       for(int i=0; i<Factory.getInstance().getPlaceDAO().getAllPlace().size();i++){
+           if(thisSession.getHallId().getHallId() == Factory.getInstance().getPlaceDAO().getAllPlace().get(i).getHall().getHallId()){
                Tickets tickets = new Tickets();
-               tickets.setPlaceId(placeInHalls.get(i));
+               tickets.setPlaceId(Factory.getInstance().getPlaceDAO().getAllPlace().get(i));
                tickets.setPrice(price);
                tickets.setDate(thisSession.getDate());
                tickets.setSessionId(thisSession);
                rezultTickets.add(tickets);
+               Factory.getInstance().getTicketsDAO().addTickets(tickets);
            }
        }
-
         return  rezultTickets;
-    }
-
-    public <T> void delete(T o){
-        if(o.getClass().equals(Movie.class)) Factory.getInstance().getMovieDAO().deleteMovie((Movie) o);
-        if(o.getClass().equals(Genre.class)) Factory.getInstance().getGenreDAO().deleteGenre((Genre) o);
-        if(o.getClass().equals(News.class)) Factory.getInstance().getNewsDAO().deleteNews((News) o);
-        if(o.getClass().equals(Events.class)) Factory.getInstance().getEventDAO().deleteEvent((Events) o);
-        if(o.getClass().equals(Sesion.class)) Factory.getInstance().getSessionDAO().deleteSession((Sesion) o);
     }
 
 }

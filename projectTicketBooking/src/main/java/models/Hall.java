@@ -36,10 +36,10 @@ public class Hall {
 	@Column(name="COUNT_ROW")
 	private int countRow;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hallSession")
+	@OneToMany
 	private List<Sesion> session;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "hallPlace")
+	@OneToMany
 	private List<Place> places;
 	
 	public int getHallId(){

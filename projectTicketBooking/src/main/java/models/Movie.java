@@ -1,14 +1,5 @@
 package models;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -52,10 +43,10 @@ public class Movie {
 	@Column(name="LENGTH")
 	private Date length;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "movieNews")
+	@OneToMany
 	private List<News> news;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "movieSession")
+	@OneToMany
 	private List<Sesion> session;
 	
 	@ManyToMany

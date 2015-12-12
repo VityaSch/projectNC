@@ -40,39 +40,59 @@ public class EnterController {
         return rezult;
     }
 
-    public void showAllGenres() throws SQLException {
-        List<Genre> genres = Factory.getInstance().getGenreDAO().getAllGenre();
-        System.out.println("========Жанры=========");
-        for(int i = 0; i < genres.size(); i++) {
-            System.out.println("id : " + genres.get(i).getGenreId() + ", name : " + genres.get(i).getName());
+    public void showAllGenres(){
+        try {
+            List<Genre> genres = Factory.getInstance().getGenreDAO().getAllGenre();
+            System.out.println("========Жанры=========");
+            for(int i = 0; i < genres.size(); i++) {
+                System.out.println("id : " + genres.get(i).getGenreId() + ", name : " + genres.get(i).getName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    public void showAllMovie() throws SQLException {
-        List<Movie> movies = Factory.getInstance().getMovieDAO().getAllMovie();
-        System.out.println("========Фильмы=========");
-        for(int i = 0; i < movies.size(); i++) {
-            System.out.println("id : " + movies.get(i).getId() + ", name : " + movies.get(i).getName());
+    public void showAllMovie(){
+        try {
+            List<Movie> movies = Factory.getInstance().getMovieDAO().getAllMovie();
+            System.out.println("========Фильмы=========");
+            for(int i = 0; i < movies.size(); i++) {
+                System.out.println("id : " + movies.get(i).getId() + ", name : " + movies.get(i).getName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    public void showAllNews() throws SQLException {
-        List<News> news = Factory.getInstance().getNewsDAO().getAllNews();
-        System.out.println("========Новости=========");
-        for(int i = 0; i < news.size(); i++) {
-            System.out.println("id : " + news.get(i).getNewsId() + ", name : " + news.get(i).getName());
+    public void showAllNews(){
+        try {
+            List<News> news = Factory.getInstance().getNewsDAO().getAllNews();
+            System.out.println("========Новости=========");
+            for(int i = 0; i < news.size(); i++) {
+                System.out.println("id : " + news.get(i).getNewsId() + ", name : " + news.get(i).getName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    public void showAllEvents() throws SQLException {
-        List<Events> event = Factory.getInstance().getEventDAO().getAllEvent();
-        System.out.println("========События=========");
-        for(int i = 0; i < event.size(); i++) {
-            System.out.println("id : " + event.get(i).getEventId() + ", name : " + event.get(i).getName());
+    public void showAllEvents(){
+        try {
+            List<Events> event = Factory.getInstance().getEventDAO().getAllEvent();
+            System.out.println("========События=========");
+            for(int i = 0; i < event.size(); i++) {
+                System.out.println("id : " + event.get(i).getEventId() + ", name : " + event.get(i).getName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    public void showAllSessions() throws SQLException {
-        List<Sesion> session = Factory.getInstance().getSessionDAO().getAllSession();
-        System.out.println("========Сеансы=========");
-        for(int i = 0; i < session.size(); i++) {
-            System.out.println("id : " + session.get(i).getSessionId() + ", name : " + session.get(i).getMovieId().getName());
+    public void showAllSessions(){
+        try {
+            List<Sesion> session = Factory.getInstance().getSessionDAO().getAllSession();
+            System.out.println("========Сеансы=========");
+            for(int i = 0; i < session.size(); i++) {
+                System.out.println("id : " + session.get(i).getSessionId() + ", name : " + session.get(i).getMovieId().getName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

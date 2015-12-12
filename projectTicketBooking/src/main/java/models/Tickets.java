@@ -2,14 +2,7 @@ package models;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,7 +23,7 @@ public class Tickets {
 	@GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
 	private int ticketId;
-	
+
 	@ManyToOne
 	@JoinColumn(name="SESSION_ID")
 	private Sesion ticketSession;
