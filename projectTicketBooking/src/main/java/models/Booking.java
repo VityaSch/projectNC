@@ -30,7 +30,7 @@ public class Booking {
 	@Column(name="BOOKING_ID")
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-	private int booking_id;
+	private int bookingId;
 	
 	@ManyToOne
 	@JoinColumn(name="SESSION_ID")
@@ -54,7 +54,7 @@ public class Booking {
 	}
 	
 	public int getBookingId(){
-		return this.booking_id;
+		return this.bookingId;
 	}
 	
 	public Sesion getSession(){
@@ -70,7 +70,7 @@ public class Booking {
 	}
 
 	public void setBookingId(int id){
-		this.booking_id = id;
+		this.bookingId = id;
 	}
 	
 	public void setSession(Sesion s){

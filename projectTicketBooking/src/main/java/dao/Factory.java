@@ -1,15 +1,6 @@
 package dao;
 
-import impl.BookingDAOImpl;
-import impl.EventDAOImpl;
-import impl.GenreDAOImpl;
-import impl.HallDAOImpl;
-import impl.MovieDAOImpl;
-import impl.NewsDAOImpl;
-import impl.PlaceDAOImpl;
-import impl.SaleDAOImpl;
-import impl.SessionDAOImpl;
-import impl.TicketsDAOImpl;
+import impl.*;
 
 public class Factory {
 	private static MovieDAO movieDAO = null;
@@ -22,6 +13,7 @@ public class Factory {
 	private static SaleDAO saleDAO = null;
 	private static SessionDAO sessionDAO = null;
 	private static TicketsDAO ticketDAO = null;
+	private static AdminDAO adminDAO = null;
 	private static Factory instance = null;
 	
 	public static synchronized Factory getInstance(){
@@ -99,5 +91,12 @@ public class Factory {
 			ticketDAO = new TicketsDAOImpl();
 		}
 		return ticketDAO;
+	}
+
+	public AdminDAO getAdminDAO(){
+		if(adminDAO == null){
+			adminDAO = new AdminDAOImpl();
+		}
+		return adminDAO;
 	}
 }

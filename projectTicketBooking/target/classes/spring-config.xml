@@ -16,6 +16,12 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <property name="enter" ref="enter"/>
     </bean>
 
+    <bean id="authorization" class="view.AuthorizationView" scope="prototype">
+        <property name="enter" ref="enter"/>
+        <property name="adminController" ref="adminController"/>
+        <property name="adminView" ref="adminView"/>
+    </bean>
+
     <bean id="adminController" class="control.AdminController" scope="prototype">
         <property name="enter" ref="enter"/>
     </bean>
@@ -26,9 +32,10 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     </bean>
 
     <bean id="startView" class="view.StartView" scope="prototype">
-        <property name="viewAdmin" ref="adminView"/>
         <property name="viewUser" ref="userView"/>
         <property name="enter" ref="enter"/>
+        <property name="authorizationView" ref="authorization"/>
     </bean>
+
 
 </beans>

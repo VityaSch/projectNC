@@ -130,4 +130,17 @@ public class AdminController {
         return  rezultTickets;
     }
 
+    public boolean authorization(String name, String password){
+        try {
+            String nameAdmin = Factory.getInstance().getAdminDAO().getAdminById(1).getName();
+            String passAdmin = Factory.getInstance().getAdminDAO().getAdminById(1).getPassword();
+
+            if(name.equals(nameAdmin) && password.equals(passAdmin))return true;
+            else return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

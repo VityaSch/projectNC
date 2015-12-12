@@ -25,6 +25,7 @@
     <mapping class="models.Sale" />
     <mapping class="models.Sesion" />
     <mapping class="models.Tickets" />
+    <mapping class="models.Admin" />
     
   </session-factory>
 </hibernate-configuration>

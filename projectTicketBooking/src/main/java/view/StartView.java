@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Created by Виктор on 04.12.2015.
  */
 public class StartView {
-    private ViewAdmin viewAdmin;
+    private AuthorizationView viewAdmin;
     private ViewUser viewUser;
     private EnterController enter;
 
@@ -27,14 +27,14 @@ public class StartView {
         switch (enter.getInt()){
             case 1: viewUser.showStartUser();
                 break;
-            case 2:  viewAdmin.showStartAdmin();
+            case 2:  viewAdmin.authorizationUser();
                 break;
             default: showStartMenu();
                 break;
             }
     }
 
-    public ViewAdmin getViewAdmin() {
+    public AuthorizationView getAuthorizationView() {
         return viewAdmin;
     }
 
@@ -50,7 +50,7 @@ public class StartView {
         this.enter = enter;
     }
 
-    public void setViewAdmin(ViewAdmin viewAdmin) {
+    public void setAuthorizationView(AuthorizationView viewAdmin) {
         this.viewAdmin = viewAdmin;
     }
 
